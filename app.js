@@ -1,9 +1,19 @@
 const express = require("express");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
 
 const app = express();
 const productRoutes = require("./api/routes/products");
+
+mongoose.connect(
+  "mongodb+srv://agent007:" +
+    process.env.MONGO_ATLAS_PW +
+    "@node-temp-data-1rmwr.mongodb.net/test?retryWrites=true",
+  {
+    useNewUrlParser: true
+  }
+);
 
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: false }));
